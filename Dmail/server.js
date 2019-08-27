@@ -1,4 +1,4 @@
-require('dotenv').config()
+  require('dotenv').config()
 const express = require('express');
 const app = express();
 const port = process.env.DB_PORT || 3000
@@ -46,11 +46,13 @@ io.on("connection", socket => {
     io.emit("documents", Object.keys(documents));
   });
 
-http.listen(3000, function(){
-    console.log('listening on *:3000');
-  });
-app.get('/*', (req,res)=>{
+  app.get('/*', (req,res)=>{
     res.send('back');
 })
 
-app.listen(port);
+http.listen(3000, function(){
+    console.log('listening on *:3000');
+  });
+
+
+// app.listen(port);
