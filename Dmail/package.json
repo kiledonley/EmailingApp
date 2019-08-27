@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~9.0.0-next.3",
     "@angular/platform-browser-dynamic": "~9.0.0-next.3",
     "@angular/router": "~9.0.0-next.3",
+    "@types/socket.io": "^2.1.2",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "dotenv": "^8.1.0",

@@ -8,7 +8,7 @@ import { ThreadComponent } from './thread/thread.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 
-const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
@@ -55,7 +55,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
