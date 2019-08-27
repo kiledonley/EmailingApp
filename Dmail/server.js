@@ -6,7 +6,7 @@ const bodyParser = require("body-parser")
 // const middleWare = require("./middleware/example.middleware")
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-const documents = {};
+const threads = {};
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname+"/dist/Dmail"))
@@ -26,24 +26,26 @@ io.on("connection", socket => {
       previousId = currentId;
     };
   
-    socket.on("getDoc", docId => {
-      safeJoin(docId);
-      socket.emit("document", documents[docId]);
+    socket.on("getThread", threadId => {
+      safeJoin(threadId);
+      socket.emit("thread", threads[threadId]);
     });
   
-    socket.on("addDoc", doc => {
-      documents[doc.id] = doc;
-      safeJoin(doc.id);
-      io.emit("documents", Object.keys(documents));
-      socket.emit("document", doc);
+    socket.on("addThread",  thread => {
+      threads[thread.id] = thread;
+      safeJoin(thread.id);
+      io.emit("threads", Object.keys(threads));
+      socket.emit("thread", thread);
     });
   
-    socket.on("editDoc", doc => {
-      documents[doc.id] = doc;
-      socket.to(doc.id).emit("document", doc);
+    socket.on("editThread", thread => {
+      console.log(threads.id, thread.thread, thread,"edit thread")
+      threads[thread.id] = thread;
+      console.log(thread)
+      socket.to(thread.id).emit("thread", thread);
     });
   
-    io.emit("documents", Object.keys(documents));
+    io.emit("threads", Object.keys(threads));
   });
 
   app.get('/*', (req,res)=>{
@@ -56,3 +58,4 @@ http.listen(3000, function(){
 
 
 // app.listen(port);
+

@@ -30,7 +30,6 @@ export class ThreadListComponent implements OnInit, OnDestroy {
 
   newThread() {
     this.threadService.newThread();
-    console.log("new thread in component",this.threadService)
   }
 
 }

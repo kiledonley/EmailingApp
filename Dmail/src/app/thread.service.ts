@@ -16,12 +16,12 @@ export class ThreadService {
   }
 
   newThread() {
-    console.log("new thread in thread service")
+
     this.socket.emit('addThread', { id: this.threadId(), thread: '' });
   }
 
   editThread(thread: Thread) {
-    this.socket.emit('editThread', Thread);
+    this.socket.emit('editThread', thread);
   }
 
   private threadId() {
@@ -31,7 +31,6 @@ export class ThreadService {
     for (let i = 0; i < 5; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
-
     return text;  
   }
 }
