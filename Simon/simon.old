@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simon</title>
+    
+    
+    <style>
+    .main {
+    margin-left: calc(100vw - 900px);
+    width: 700px;
+    height: 700px;
+}
+
+.square {
+    width: 300px;
+    height: 300px;
+    border: 5px solid black;
+    float: left;
+    opacity: .6;
+}
+
+.green {
+    border-top-left-radius: 100%;
+    background-color: green;
+    clear: left;
+}
+
+.red {
+    border-top-right-radius: 100%;
+    background-color: red;
+    clear: right;
+}
+
+.blue {
+    border-bottom-left-radius: 100%;
+    background-color: blue;
+    clear: left;
+}
+
+.yellow {
+    border-bottom-right-radius: 100%;
+    background-color: yellow;
+    clear: right;
+}
+
+.black {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: black;
+    margin-top: 210px;
+    margin-left: 210px;
+    position: absolute;
+}
+    </style>
+
+</head>
+<body>
+    <div class="main">
+        <div id="top-left" class="square green"></div>
+        <div id="top-right" class="square red"></div>
+        <div id="bottom-left" class="square blue"></div>
+        <div id="bottom-right" class="square yellow"></div>
+        <div id="center" class="black"></div>
+    </div>
+
+
+
+</body>
+<script src="simon.js">
+
+</script>
+</html>
