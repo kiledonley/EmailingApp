@@ -30,13 +30,9 @@
     "ngx-socket-io": "^3.0.1",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
-<<<<<<< HEAD
-    "rxjs": "~6.4.0",
+    "rxjs": "~6.5.2",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
-=======
-    "rxjs": "~6.5.2",
->>>>>>> b1177d008d4dcd72a94bc06ceea0d8525a83165d
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
