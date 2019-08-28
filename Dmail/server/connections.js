@@ -19,10 +19,9 @@ var pool = mysql.createPool({
               console.error('Database connection was refused.')
           }
       }
-      
+
       if (connection) connection.release()
       return
   })
-// let SQL = `CALL login(?)`;
-// let sql = `CALL filterTodo(?)`
+
   module.exports = pool;
