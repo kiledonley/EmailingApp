@@ -1,0 +1,54 @@
+<div class="center">
+<mat-card class="card">
+  <form [formGroup]="signupForm" (ngSubmit)="register()">
+
+      <mat-card-title> Sign Up For an Account </mat-card-title>
+
+      <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input  formControlName ="username" matInput placeholder="Username">
+          <mat-error *ngIf="username.errors?.required && (username.dirty || username.touched)">
+            Username is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input formControlName ="password" type="password" matInput placeholder="Password">
+          <mat-hint>Password must be at least 8 characters</mat-hint>
+          <mat-error *ngIf="password.errors?.required && (password.dirty || password.touched)">Password is required</mat-error>
+          <mat-error *ngIf="password.errors?.minlength && (password.dirty || password.touched)">Password must be at least 8 characters long</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+          <mat-label>Repeat Password</mat-label>
+          <input formControlName ="passwordRepeat" type="password" matInput  placeholder="Repeat Password">
+          <mat-error *ngIf="passwordRepeat.errors?.minlength && (password.dirty || password.touched)">Password must be at least 8 characters long</mat-error>
+          <mat-error *ngIf="passwordRepeat.errors?.required && (passwordRepeat.dirty || passwordRepeat.touched)">Repeat Password is required</mat-error>
+          <mat-error *ngIf="passwordRepeat.errors?.mustMatch && (passwordRepeat.dirty || passwordRepeat.touched)">Passwords must match!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+          <mat-label>E-mail address</mat-label>
+          <input formControlName ="email" type="email" matInput placeholder="E-mail address">
+          <mat-error *ngIf="email.errors?.required && (email.dirty || email.touched)">Email is required scrub</mat-error>
+          <mat-error *ngIf="email.errors?.email && (email.dirty || email.touched)">Please enter a Valid Email
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+          <mat-label>Confirm E-mail address</mat-label>
+          <input formControlName ="emailConfirm" type="email" matInput placeholder="Confirm E-mail address">
+          <mat-error *ngIf="emailConfirm.errors?.required && (emailConfirm.dirty || emailConfirm.touched)">Confirm E-mail is required scrub</mat-error>
+          <mat-error *ngIf="emailConfirm.errors?.email && (emailConfirm.dirty || emailConfirm.touched)">Please enter a Valid Email</mat-error>
+              <mat-error *ngIf="emailConfirm.errors?.mustMatch && (emailConfirm.dirty || emailConfirm.touched)">E-mails must match
+                </mat-error>
+
+      </mat-form-field>
+
+      <div class="buttondiv">
+        <button type="submit" class="buttoncenter" color="primary"> Register </button>
+      </div>
+
+      </form>
+    </mat-card>
+
+  </div>

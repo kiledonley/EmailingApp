@@ -43,13 +43,17 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ThreadListComponent,
-    ThreadComponent
- 
+    ThreadComponent,
+    LoginComponent,
+    SignupComponent
+
   ],
   imports: [
     BrowserModule,

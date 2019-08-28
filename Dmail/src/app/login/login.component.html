@@ -1,0 +1,18 @@
+<div class="center">
+
+  <mat-card class ="card">
+      <mat-card-title> Login to Your Account </mat-card-title>
+      <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput required [(ngModel)]='username' placeholder="Username">
+      </mat-form-field>
+      <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input type="password" matInput required [(ngModel)]='password' placeholder="Password">
+       </mat-form-field>
+      <div class="buttondiv">
+       <button class="buttoncenter" mat-fab color="primary" (click)='login()'>Login</button>
+      </div>
+  </mat-card>
+
+</div>
