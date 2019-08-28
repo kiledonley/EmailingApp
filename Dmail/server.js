@@ -1,13 +1,16 @@
   require('dotenv').config()
 const express = require('express');
 const app = express();
-const port = process.env.DB_PORT || 3000
+const port = process.env.PORT || 3000
 const bodyParser = require("body-parser")
 // const middleWare = require("./middleware/example.middleware")
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const threads = {};
+const session = require("express-session");
 
+const port = process.env.PORT || 3000
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname+"/dist/Dmail"))
 // app.use("", middleWare)
@@ -56,6 +59,12 @@ http.listen(3000, function(){
     console.log('listening on *:3000');
   });
 
-
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
 // app.listen(port);
-
+  })
+  db.sequelize.sync().then(function() {
+    app.listen(PORT, function() {
+      console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+    });
+  });
