@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 export class UserService {
   private authenticated: false;
   constructor(private router: Router) { }
-}
+
 // loginUser(username, password){
 //   let users = JSON.parse(localStorage.getItem("users"));
 //   // Makes sure there is a user registered to attempt login
@@ -32,16 +32,18 @@ export class UserService {
 //   this.router.navigate(['playlists']);
 
 // }
-// signUpUser(u, p, e){
-//   // creates a default user
-//   if (JSON.parse(localStorage.getItem("users")) === null){
-//     let newUser = [{
-//       username: "username",
-//       userId: 1,
-//       password: "password",
-//       email: "username@gmail.com",
-//       nickname: "User"
-//       }];
-//     localStorage.setItem('users', JSON.stringify(newUser));
-//     localStorage.setItem('nextId', "1");
-//   }
+signUpUser(u, p, e){
+  // creates a default user
+  if (JSON.parse(localStorage.getItem("users")) === null){
+    let newUser = [{
+      username: "username",
+      userId: 1,
+      password: "password",
+      email: "username@gmail.com",
+      nickname: "User"
+      }];
+    localStorage.setItem('users', JSON.stringify(newUser));
+    localStorage.setItem('nextId', "1");
+  }
+}
+}
