@@ -3,15 +3,14 @@ const express = require('express');
 const app = express();
 const port = process.env.DB_PORT || 3000
 const bodyParser = require("body-parser")
-// const middleWare = require("./middleware/example.middleware")
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const threads = {};
+const userRoutes = require("./server/routes/userRoutes.js")
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname+"/dist/Dmail"))
-// app.use("", middleWare)
-// app.search("/posts", postRoutes);
+app.use("/api/user", userRoutes);
 
 
 app.get('/', (req,res)=>{
@@ -39,9 +38,7 @@ io.on("connection", socket => {
     });
   
     socket.on("editThread", thread => {
-      console.log(threads.id, thread.thread, thread,"edit thread")
       threads[thread.id] = thread;
-      console.log(thread)
       socket.to(thread.id).emit("thread", thread);
     });
   

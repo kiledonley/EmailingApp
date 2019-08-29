@@ -1,49 +1,48 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private authenticated: false;
-  constructor(private router: Router) { }
+  private authenticated: boolean = false;
+  constructor(private router: Router,
+              private http: HttpClient
+    ) { }
 
-// loginUser(username, password){
-//   let users = JSON.parse(localStorage.getItem("users"));
-//   // Makes sure there is a user registered to attempt login
-//   let userToLoginArray = users.filter(user => user.username == username);
-//   let userToLogin = userToLoginArray[0];
-//   // if (!userToLogin){
-//   //   console.log("no such user registered!");
-//   //   return;
-//   // }
 
-//   // password check
-//   if (!userToLogin || userToLogin.password != password){
-//     console.log("Username or Password is incorrect. Please try again.");
-//     return;
-//   };
-//   this.authenticated = true;
-//   console.log(users);
-//   let id = users.find(users => users.username === username).userId;
-//   console.log(id);
-//   localStorage.setItem('currentId', id.toString());
-//   console.log(`Logged in User: ${username}!`);
-//   this.router.navigate(['playlists']);
+loginUser(user, password){
 
-// }
-signUpUser(u, p, e){
-  // creates a default user
-  if (JSON.parse(localStorage.getItem("users")) === null){
-    let newUser = [{
-      username: "username",
-      userId: 1,
-      password: "password",
-      email: "username@gmail.com",
-      nickname: "User"
-      }];
-    localStorage.setItem('users', JSON.stringify(newUser));
-    localStorage.setItem('nextId', "1");
+console.log("user service login function")
+  let userinfo = {
+    username: user,
+    password: password
   }
+let login = '/api/user/login'
+return this.http.post(login, userinfo);
+  };
+
+signUpUser(user, password, email){
+
+    let userinfo = {
+      username: user,
+      password: password
+    }
+  
+  let login = '/api/user/login'
+  return this.http.post(login, userinfo);
+    };
+
+
+
+logoutUser(){
+
+  this.authenticated = false;
+  console.log("user logged out");
+}
+
+isAuth(){
+  return this.authenticated;
 }
 }

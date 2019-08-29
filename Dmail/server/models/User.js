@@ -1,15 +1,22 @@
-let mysql = require('mysql');
 let pool= require('../connections.js');
- 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
-let SQL = `CALL login(?)`;
+function login(res, username, password){
 
-pool.query(SQL, true, (error, results,) => {
-    if (error) {
-      return console.error(error.message);
-    }
-    console.log(results[0]);
-  });
-   
+  console.log("running the function")
+  let hash = bcrypt.hashSync(password, saltRounds);
+   pool.query(
+    `SELECT * FROM User WHERE Usercol= ?`, username, (err, results) => { 
 
+      if(err){ return res.send(err); }
+
+      if(results.length === 0 || hash !== results[0].password){
+        return res.send({err: 'incorrect username or password'});    
+      }
+    return res.send({userID: results.userID});
+})
+}
+
+module.exports.login = login;
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
 import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { mustMatch} from '../Helper/Match.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -14,16 +14,18 @@ export class SignupComponent implements OnInit {
   submitted = false;
 
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) { }
+  constructor(private userService: UserService, private formBuilder: FormBuilder,
+              private router: Router) { }
 
 
   register() {
     if (this.signupForm.invalid) {
       console.log('Fix your Errors Bitch');
+      return}
+      
+
+      this.router.navigateByUrl('/signin');
       return;
-    }
-
-
 
     this.userService.signUpUser(this.username.value, this.password.value, this.email.value);
   }

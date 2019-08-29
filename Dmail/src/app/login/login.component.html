@@ -10,9 +10,12 @@
           <mat-label>Password</mat-label>
           <input type="password" matInput required [(ngModel)]='password' placeholder="Password">
        </mat-form-field>
-      <div class="buttondiv">
-       <button class="buttoncenter" mat-fab color="primary" (click)='login()'>Login</button>
-      </div>
+
+       <div class = "flexrow">
+            <button class="button" mat-fab color="primary" routerLink="/signup">Sign Up</button>
+            <button class="button" mat-fab color="primary" (click)='login()'>Login</button>
+        </div>
+
   </mat-card>
 
 </div>
