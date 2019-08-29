@@ -1,4 +1,8 @@
-<app-thread-list></app-thread-list>
+<div *ngFor="let msg of messages">
+    {{msg}}
+</div>
 
-
-<textarea [(ngModel)]='thread.thread' (keyup)='editThread()' placeholder='Start typing...'></textarea>
+<div class="bottom">
+<input class="input" [(ngModel)]="message" name="message">
+<button class="button" (click)="sendMessage()">Send Message</button>
+</div>
