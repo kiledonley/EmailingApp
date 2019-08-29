@@ -10,8 +10,6 @@ const documents = {};
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname+"/dist/Dmail"))
-// app.use("", middleWare)
-// app.search("/posts", postRoutes);
 
 
 app.get('/', (req,res)=>{
@@ -54,5 +52,13 @@ http.listen(3000, function(){
     console.log('listening on *:3000');
   });
 
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
 
-// app.listen(port);
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+  });
+});
+
+
