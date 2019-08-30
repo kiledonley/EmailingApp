@@ -7,10 +7,12 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 // const threads = {};
 const userRoutes = require("./server/routes/userRoutes.js")
+const messageRoutes = require("./server/routes/messageRoutes.js")
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname+"/dist/Dmail"))
 app.use("/api/user", userRoutes);
+app.use("/api/message", messageRoutes);
 
 
 app.get('/', (req,res)=>{
@@ -49,6 +51,7 @@ app.get('/', (req,res)=>{
 io.on('connection', (socket)=>
   socket.on('chat message', (msg)=>
     io.emit('chat message', msg)
+    
 ))
 
   app.get('/*', (req,res)=>{

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +10,10 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
   private authenticated: boolean = false;
   constructor(private router: Router,
-              private http: HttpClient
-    ) { }
+              private http: HttpClient,
+    ) {}
 
+public activeUserID;
 
 loginUser(user, password){
 
@@ -20,8 +23,13 @@ console.log("user service login function")
     password: password
   }
 let login = '/api/user/login'
-return this.http.post(login, userinfo);
-  };
+return this.http.post(login, userinfo).pipe(map((res) => {
+  if(res != null){ 
+    
+    this.activeUserID = res['UserID'] };
+  return res;
+}))
+}
 
 registerUser(user, password, email){
 
@@ -35,7 +43,7 @@ registerUser(user, password, email){
   return this.http.post(register, newuserinfo);
     };
 
-
+activeID(){return this.activeUserID}
 
 logoutUser(){
 
