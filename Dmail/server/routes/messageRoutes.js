@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var userFunctions = require("../models/User.js")
+var messageFunctions = require("../models/message.js")
 
-router.post("/login", (req,res) => {
-  userFunctions.login(res, req.body.username, req.body.password)
+router.post("/addMessage", (req,res) => {
+  console.log(req.body.body)
+  messageFunctions.addMessage(res, req.body.SenderID, req.body.threadID, req.body.body)
   })
 
   module.exports = router;
