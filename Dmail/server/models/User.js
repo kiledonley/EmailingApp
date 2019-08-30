@@ -8,20 +8,16 @@ function login(res, username, password){
     `SELECT * FROM User WHERE Usercol= ?`, username, (err, results) => { 
 
       if(err){ return res.send(err); }
-
-      if(results.length === 0 || 
-        bcrypt.compare(password, results.password, function(err, res) {
+      console.log(results[0], password)
+      if(results.length !== 0 && 
+        bcrypt.compareSync(password, results[0].Password)) {
           if(err){ return res.send(err); }
-          return res
-      })
-        ){
-        return res.send({hash});    
+          return res.send({token: 'user authenticated'})
       }
-
       // if(results.length === 0 || hash !== results[0].password){
       //   return res.send({err: 'incorrect username or password'},);    
       // }
-    return res.send({userID: results.userID});
+    return res.send({err: 'username or password incorrect'});
 })
 }
 
