@@ -1,0 +1,4 @@
+<div class='sidenav'>
+	<span (click)='newThread()'>New Chat</span>
+	<span [class.selected]='threadId === currentThreadId' (click)='loadThread(threadId)' *ngFor='let threadId of threads | async'>{{ threadId }}</span>
+</div>
