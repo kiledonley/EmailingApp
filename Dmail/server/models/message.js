@@ -1,12 +1,18 @@
 let mysql = require('mysql');
 let pool= require('../connections.js');
  
+function addMessage(res, senderID, threadID, body){
 
-let SQL = `CALL addMessage(?)`;
+    console.log( senderID, threadID, body);
 
-pool.query(
-    'SELECT * FROM message WHERE id=? LIMIT ?, 5',[ user_id, start ], 
-    function (err, results) {
+        pool.query(
+          `INSERT INTO Message(senderID, threadID, body)
+          VALUES(?,?,?)`, [senderID, threadID, body], (err, results) => { 
+            if(err){ return res.send(err); } 
+            } 
+        )
+        return res.send({ token: `message added`});
+  }
 
-    }
-);
+
+module.exports.addMessage = addMessage;

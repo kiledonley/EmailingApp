@@ -4,6 +4,9 @@ import { Subscription } from 'rxjs';
 import { Thread } from 'src/app/thread';
 import { startWith } from 'rxjs/operators';
 import * as io from 'socket.io-client'
+import { UserService } from '../user.service';
+import { Message } from 'src/app/message';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-thread',
@@ -16,15 +19,33 @@ export class ThreadComponent implements OnInit, OnDestroy {
   socket: any = io();
   message: string;
   messages: Array<string> = []
-  constructor(private threadService: ThreadService) { }
+  messageThread: string = "0";
+  
+  constructor(private threadService: ThreadService,
+              private userService: UserService,
+              private router: Router
+              ) { }
 
   sendMessage(){
-    this.socket.emit('chat message', this.message);
+  let messagetosend: Message = {
+    threadID: this.messageThread,
+    body: this.message,
+    SenderID: this.userService.activeUserID
   }
+  console.log(messagetosend.SenderID)
+
+    this.threadService.addMessage(messagetosend).subscribe(val=> {
+      console.log(val)
+      })
+    }
+
+    // this.socket.emit('chat message', this.message);
+  
   ngOnInit() {
-    this.socket.on('chat message', msg=>{
-      this.messages.push(msg);
-    })
+    // this.socket.on('chat message', msg=>{
+    //   this.messages.push(msg);
+    // })
+
     // this._threadSub = this.threadService.currentThread.pipe(
     //   startWith({ id: '', thread: 'Select an existing thread or create a new one to get started'})
     // ).subscribe(thread => this.thread = thread);

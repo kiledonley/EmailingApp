@@ -12,7 +12,7 @@ function login(res, username, password){
       if(results.length !== 0 && 
         bcrypt.compareSync(password, results[0].Password)) {
           if(err){ return res.send(err); }
-          return res.send({token: 'user authenticated'})
+          return res.send({UserID: results[0].UserID})
       }
       // if(results.length === 0 || hash !== results[0].password){
       //   return res.send({err: 'incorrect username or password'},);    
