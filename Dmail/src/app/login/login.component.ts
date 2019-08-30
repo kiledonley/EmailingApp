@@ -27,11 +27,10 @@ export class LoginComponent implements OnInit {
     console.log("initiating the login")
     // console.log(this.userService.loginUser(this.username, this.password).subscribe)
     this.userService.loginUser(this.username, this.password).subscribe(val=> console.log(val));
-    // this.router.navigateByUrl('/messages');
+    this.router.navigateByUrl('/messages');
   }
 
   signuproute() {
     this.router.navigateByUrl('/signup');
 };
-
 }

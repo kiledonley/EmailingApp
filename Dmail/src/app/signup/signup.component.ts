@@ -12,44 +12,28 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   submitted = false;
-
+  username = '';
+  password = '';
+  passwordRepeat = '';
+  email = '';
+  emailConfirm = '';
 
   constructor(private userService: UserService, private formBuilder: FormBuilder,
               private router: Router) { }
 
 
-  register() {
-    if (this.signupForm.invalid) {
-      console.log('Fix your Errors Bitch');
-      return}
-      
-
-      this.router.navigateByUrl('/signin');
-      return;
-
-    this.userService.signUpUser(this.username.value, this.password.value, this.email.value);
-  }
-  get username() {
-    return this.signupForm.get('username');
-  }
-
-  get email() {
-    return this.signupForm.get('email');
+  register(){
+    console.log(this.username,this.password, this.passwordRepeat, this.email, this.emailConfirm)
+    if(this.password === this.passwordRepeat && this.email === this.emailConfirm){
+    this.userService.registerUser(this.username, this.password, this.email).subscribe(val=> {
+      console.log(val) 
+      if(val === "User registered"){
+        this.router.navigateByUrl('/login');
+      }
     }
-
-    get emailConfirm() {
-      return this.signupForm.get('emailConfirm');
-    }
-
-  get password() {
-    return this.signupForm.get('password');
-
-
+      );
   }
-
-  get passwordRepeat() {
-    return this.signupForm.get('passwordRepeat');
-  }
+}
 
 
 

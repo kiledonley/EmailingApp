@@ -23,15 +23,16 @@ let login = '/api/user/login'
 return this.http.post(login, userinfo);
   };
 
-signUpUser(user, password, email){
+registerUser(user, password, email){
 
-    let userinfo = {
+    let newuserinfo = {
       username: user,
-      password: password
+      password: password,
+      email: email
     }
-  
-  let login = '/api/user/login'
-  return this.http.post(login, userinfo);
+   console.log(newuserinfo);
+  let register = '/api/user/register'
+  return this.http.post(register, newuserinfo);
     };
 
 
