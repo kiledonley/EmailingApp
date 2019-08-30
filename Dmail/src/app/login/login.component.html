@@ -1,21 +1,25 @@
 <div class="center">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <mat-card class="card">
+            <mat-card-title> Login to Your Account </mat-card-title>
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input formControlName="username" matInput placeholder="Username">
+                <mat-error *ngIf="username.errors?.required && (username.dirty || username.touched)">
+                    Username is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input formControlName="password" type="password" matInput placeholder="Password">
+                <mat-error *ngIf="password.errors?.required && (password.dirty || password.touched)">Password is
+                    required</mat-error>
+            </mat-form-field>
 
-  <mat-card class ="card">
-      <mat-card-title> Login to Your Account </mat-card-title>
-      <mat-form-field>
-          <mat-label>Username</mat-label>
-          <input matInput required [(ngModel)]='username' placeholder="Username">
-      </mat-form-field>
-      <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input type="password" matInput required [(ngModel)]='password' placeholder="Password">
-       </mat-form-field>
+            <div class="flexrow">
+                <button class="button" mat-fab color="primary" routerLink="/signup">Sign Up</button>
+                <button class="button" mat-fab color="primary">Login</button>
+            </div>
 
-       <div class = "flexrow">
-            <button class="button" mat-fab color="primary" routerLink="/signup">Sign Up</button>
-            <button class="button" mat-fab color="primary" (click)='login()'>Login</button>
-        </div>
-
-  </mat-card>
-
+        </mat-card>
+    </form>
 </div>

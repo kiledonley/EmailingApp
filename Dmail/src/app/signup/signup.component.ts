@@ -30,7 +30,9 @@ export class SignupComponent implements OnInit {
       if(val === "User registered"){
         this.router.navigateByUrl('/login');
       }
+
     }
+    
       );
   }
 }
