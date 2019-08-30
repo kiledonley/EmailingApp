@@ -58,13 +58,10 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
-  }
- { 
- "name": "dmail",
- "description": "a really cool app",
- "version": "1.0.0",
+  },
+ 
  "engines": {
    "node": "10.16.1"
  }
-}
+
 }
