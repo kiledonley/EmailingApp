@@ -1,7 +1,7 @@
   require('dotenv').config()
 const express = require('express');
 const app = express();
-const port = process.env.DB_PORT || 3000
+const port = process.env.PORT || 3000
 const bodyParser = require("body-parser")
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
@@ -55,8 +55,8 @@ io.on('connection', (socket)=>
     res.send('back');
 })
 
-http.listen(3000, function(){
-    console.log('listening on *:3000');
+http.listen(port, function(){
+    console.log(`listening on ${port}`);
   });
 
 
