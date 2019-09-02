@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { mustMatch} from '../Helper/Match.validator';
 import { Router } from '@angular/router';
 
@@ -12,33 +12,49 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   submitted = false;
-  username = '';
-  password = '';
-  passwordRepeat = '';
-  email = '';
-  emailConfirm = '';
+  // username = '';
+  // password = '';
+  // passwordRepeat = '';
+  // email = '';
+  // emailConfirm = '';
 
   constructor(private userService: UserService, private formBuilder: FormBuilder,
               private router: Router) { }
 
 
-  register(){
-    console.log(this.username,this.password, this.passwordRepeat, this.email, this.emailConfirm)
-    if(this.password === this.passwordRepeat && this.email === this.emailConfirm){
-    this.userService.registerUser(this.username, this.password, this.email).subscribe(val=> {
-      console.log(val) 
-      if(val === "User registered"){
+  register() {
+    console.log(this.username, this.password, this.passwordRepeat, this.email, this.emailConfirm);
+    if (this.password === this.passwordRepeat && this.email === this.emailConfirm) {
+    this.userService.registerUser(this.username, this.password, this.email).subscribe(val => {
+      console.log(val);
+      if (val === 'User registered') {
         this.router.navigateByUrl('/login');
       }
 
     }
-    
+
+
       );
   }
 }
 
+get username() {
+  return this.signupForm.get('username');
+}
+get password() {
+  return this.signupForm.get('password');
+}
 
+get passwordRepeat() {
+  return this.signupForm.get('passwordRepeat');
+}
 
+get email() {
+  return this.signupForm.get('email');
+}
+get emailConfirm() {
+  return this.signupForm.get('emailConfirm');
+}
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
