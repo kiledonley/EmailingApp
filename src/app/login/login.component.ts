@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService,private formBuilder: FormBuilder,
-              private router: Router          
+  constructor(private userService: UserService, private formBuilder: FormBuilder,
+              private router: Router
     ) { }
 
 
@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
 }
 
 login() {
-  if (this.loginForm.invalid){
-    console.log("Fix your Errors Bitch");
+  if (this.loginForm.invalid) {
+    console.log('Fix your Errors Bitch');
     return;
   }
   this.userService.loginUser(this.username.value, this.password.value);
@@ -39,18 +39,18 @@ login() {
 
 
 
-  console.log("initiating the login")
+  console.log('initiating the login');
   // console.log(this.userService.loginUser(this.username, this.password).subscribe)
-  this.userService.loginUser(this.username, this.password).subscribe(val=> console.log(val));
+  this.userService.loginUser(this.username, this.password).subscribe(val => console.log(val));
   this.router.navigateByUrl('/messages');
 }
- get username(){
-   return this.loginForm.get('username')
+ get username() {
+   return this.loginForm.get('username');
  }
- get password(){
-   return this.loginForm.get('password')
+ get password() {
+   return this.loginForm.get('password');
  }
  signuproute() {
   this.router.navigateByUrl('/signup');
-};
+}
 }

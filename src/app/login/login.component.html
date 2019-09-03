@@ -5,13 +5,13 @@
             <mat-form-field>
                 <mat-label>Username</mat-label>
                 <input formControlName="username" matInput placeholder="Username">
-                <mat-error *ngIf="username.errors?.required && (username.dirty || username.touched)">
+                <mat-error *ngIf="!!username.errors?.required && (username.dirty || username.touched)">
                     Username is required</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Password</mat-label>
                 <input formControlName="password" type="password" matInput placeholder="Password">
-                <mat-error *ngIf="password.errors?.required && (password.dirty || password.touched)">Password is
+                <mat-error *ngIf="!!password.errors?.required && (password.dirty || password.touched)">Password is
                     required</mat-error>
             </mat-form-field>
 
