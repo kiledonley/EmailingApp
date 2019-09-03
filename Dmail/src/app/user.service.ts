@@ -25,8 +25,9 @@ console.log("user service login function")
 let login = '/api/user/login'
 return this.http.post(login, userinfo).pipe(map((res) => {
   if(res != null){ 
-    
-    this.activeUserID = res['UserID'] };
+      console.log(res);
+    // this.activeUserID = res['UserID'] 
+  };
   return res;
 }))
 }

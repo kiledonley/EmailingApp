@@ -1,14 +1,16 @@
-  require('dotenv').config()
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000
 const bodyParser = require("body-parser")
 const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http); 
+const passport = require("./server/config/passport.conf")
 const threads = {};
 const userRoutes = require("./server/routes/userRoutes.js")
 const messageRoutes = require("./server/routes/messageRoutes.js")
 
+app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(express.static(__dirname+"/dist/Dmail"))
 app.use("/api/user", userRoutes);

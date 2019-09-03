@@ -1,5 +1,5 @@
 let mysql = require('mysql');
-let pool= require('../connections.js');
+let pool= require('../config/database.conf');
  
 function addMessage(res, senderID, threadID, body){
 

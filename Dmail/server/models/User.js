@@ -1,4 +1,4 @@
-let pool= require('../connections.js');
+let pool= require('../config/database.conf');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -14,9 +14,7 @@ function login(res, username, password){
           if(err){ return res.send(err); }
           return res.send({UserID: results[0].UserID})
       }
-      // if(results.length === 0 || hash !== results[0].password){
-      //   return res.send({err: 'incorrect username or password'},);    
-      // }
+      
     return res.send({err: 'username or password incorrect'});
 })
 }

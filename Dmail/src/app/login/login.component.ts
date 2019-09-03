@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
 login() {
   if (this.loginForm.invalid){
-    console.log("Fix your Errors Bitch");
+    console.log("submission form wrong");
     return;
   }
   this.userService.loginUser(this.username.value, this.password.value);
