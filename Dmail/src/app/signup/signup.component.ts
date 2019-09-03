@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { mustMatch} from '../Helper/Match.validator';
 import { Router } from '@angular/router';
 
@@ -12,11 +12,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   submitted = false;
-  // username = '';
-  // password = '';
-  // passwordRepeat = '';
-  // email = '';
-  // emailConfirm = '';
+
 
   constructor(private userService: UserService, private formBuilder: FormBuilder,
               private router: Router) { }
